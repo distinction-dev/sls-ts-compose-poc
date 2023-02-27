@@ -52,7 +52,7 @@ const serverlessConfiguration: AWS = {
   functions: { helloA: hello },
   resources: {
     Outputs: {
-      FUN_ARN: {
+      funArn: {
         Value: {
           'Fn::GetAtt': ['helloA', 'Arn'],
         },
