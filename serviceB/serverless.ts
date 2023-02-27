@@ -47,6 +47,7 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      FUN_ARN: '${param:FUN_ARN}',
     },
   },
   functions: { helloB: hello },

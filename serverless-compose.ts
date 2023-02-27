@@ -5,6 +5,9 @@ const serverlessComposeConfiguration = {
     },
     serviceB: {
       path: './serviceB',
+      params: {
+        FUN_ARN: '${serviceA.FUN_ARN}',
+      },
     },
   },
 };
