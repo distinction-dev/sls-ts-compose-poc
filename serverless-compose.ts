@@ -8,6 +8,7 @@ const serverlessComposeConfiguration = {
       params: {
         FUN_ARN: '${serviceA.FUN_ARN}',
       },
+      dependsOn: ['serviceA'],
     },
   },
 };
