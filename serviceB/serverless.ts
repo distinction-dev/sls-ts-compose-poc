@@ -18,34 +18,6 @@ const serverlessConfiguration: AWS = {
       automatic: true,
       number: 3,
     },
-    alerts: {
-      dashboards: true,
-      definitions: {
-        '5XXErrors': {
-          name: '5XXErrors',
-          namespace: 'AWS/ApiGateway',
-          metric: '5XXError',
-          omitDefaultDimension: true,
-          dimensions: [
-            {
-              Name: 'ApiName',
-              Value: '${self:service}-${self:custom.stage}',
-            },
-            {
-              Name: 'Stage',
-              Value: '${self:custom.stage}',
-            },
-          ],
-          threshold: 5,
-          statistic: 'Sum',
-          period: 60,
-          evaluationPeriods: 1,
-          datapointsToAlarm: 1,
-          comparisonOperator: 'GreaterThanOrEqualToThreshold',
-        },
-      },
-      alarms: ['functionThrottles', 'functionErrors', '5XXErrors'],
-    },
   },
   plugins: [
     'serverless-webpack',
