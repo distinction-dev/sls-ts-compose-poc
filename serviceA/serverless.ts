@@ -50,13 +50,15 @@ const serverlessConfiguration: AWS = {
     },
   },
   functions: { helloA: hello },
-  outputs: {
-    FUN_ARN: {
-      value: {
-        "Fn::GetAtt": ["hello", "Arn"]
+  resources: {
+    Outputs: {
+      FUN_ARN: {
+        Value: {
+          'Fn::GetAtt': ['helloA', 'Arn'],
+        },
       },
     },
-  }
+  },
 };
 
 module.exports = serverlessConfiguration;
