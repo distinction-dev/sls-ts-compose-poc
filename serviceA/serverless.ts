@@ -52,7 +52,7 @@ const serverlessConfiguration: AWS = {
   functions: { helloA: hello },
   resources: {
     Outputs: {
-      funArn: {
+      stageName: {
         Value: '${self:provider.stage}',
       },
     },

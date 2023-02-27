@@ -6,7 +6,7 @@ const serverlessComposeConfiguration = {
     serviceB: {
       path: './serviceB',
       params: {
-        FUN_ARN: '${serviceA.funArn}',
+        stageName: '${serviceA.stageName}',
       },
       dependsOn: ['serviceA'],
     },
