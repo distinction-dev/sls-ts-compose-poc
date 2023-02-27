@@ -53,7 +53,7 @@ const serverlessConfiguration: AWS = {
   resources: {
     Outputs: {
       funArn: {
-        Value: '${self:provider.stage',
+        Value: '${self:provider.stage}',
       },
     },
   },
