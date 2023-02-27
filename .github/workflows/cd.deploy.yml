@@ -34,4 +34,4 @@ jobs:
       - name: Package Functions
         run: npx serverless package --stage uat
       - name: Deploy Functions - dev account
-        run: npx serverless deploy --package .serverless --stage uat
+        run: npx serverless deploy --stage uat
