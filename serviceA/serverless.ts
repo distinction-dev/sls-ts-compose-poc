@@ -54,7 +54,7 @@ const serverlessConfiguration: AWS = {
     Outputs: {
       funArn: {
         Value: {
-          'Fn::GetAtt': ['helloA', 'Arn'],
+          Ref: 'helloA',
         },
       },
     },
