@@ -113,6 +113,18 @@ const serverlessConfiguration: AWS = {
           Type: 'REQUEST',
         },
       },
+      apiGatewayLambdaPermissions: {
+        Type: "AWS::Lambda::Permission",
+        Properties: {
+          FunctionName: {
+            "Fn::GetAtt": [ 'AuthorizerLambdaFunction', 'Arn']
+          },
+          Action: 'lambda:InvokeFunction',
+          Principal: {
+            "Fn::GetAtt": ["", [ "apigateway.", { Ref: "AWS::URLSuffix" } ]]
+          },
+        },
+      },
     },
     Outputs: {
       stageName: {
