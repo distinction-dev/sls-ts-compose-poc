@@ -109,7 +109,7 @@ const serverlessConfiguration: AWS = {
           },
           IdentitySource: 'method.request.header.Authorization',
           Name: 'Test-LambdaAuthorizer-${env:STAGE}',
-          RestApiId: '1b99vh58ma',
+          RestApiId: 'gqli8o3eda',
           Type: 'REQUEST',
         },
       },
@@ -119,7 +119,9 @@ const serverlessConfiguration: AWS = {
         Value: '${self:provider.stage}',
       },
       authorizer: {
-        Value: ''
+        Value: {
+          Ref: 'TestAuthorizer',
+        },
       },
     },
   },
