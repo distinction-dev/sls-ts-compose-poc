@@ -57,7 +57,7 @@ const serverlessConfiguration: AWS = {
         Type: 'AWS::DynamoDB::Table',
         DeletionPolicy: 'Retain',
         Properties: {
-          TableName: '${self:custom.tables.configurationsTable}',
+          TableName: 'configuration-table-${self:provider.stage}',
           AttributeDefinitions: [
             {
               AttributeName: 'id',
@@ -108,7 +108,7 @@ const serverlessConfiguration: AWS = {
             "Fn::Join" : ["", ["arn:aws:apigateway:", "${self:provider.region}", ":lambda:path/2015-03-31/functions/", { 'Fn::GetAtt': ['AuthorizerLambdaFunction', 'Arn'] }, "/invocations"]]
           },
           IdentitySource: 'method.request.header.Authorization',
-          Name: 'Test-LambdaAuthorizer-${env:STAGE}',
+          Name: 'Test-LambdaAuthorizer-${self:provider.stage}',
           RestApiId: 'gqli8o3eda',
           Type: 'REQUEST',
         },
