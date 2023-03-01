@@ -105,7 +105,7 @@ const serverlessConfiguration: AWS = {
         Properties: {
           AuthorizerResultTtlInSeconds: 300,
           AuthorizerUri: {
-            "Fn::Join" : ["", ["arn:aws:apigateway:", "${self:provider.region}", ":lambda:path/2015-03-31/functions/", { 'Fn::GetAtt': ['AuthorizerLambdaFunction', 'Arn'] }, "/invocations"]]
+            "Fn::Join" : ["", ["arn:aws:apigateway:", "${self:provider.region}", ":lambda:path/2015-03-31/functions/", { 'Fn::GetAtt': ['authorizer', 'Arn'] }, "/invocations"]]
           },
           IdentitySource: 'method.request.header.Authorization',
           Name: 'Test-LambdaAuthorizer-${self:provider.stage}',
@@ -117,7 +117,7 @@ const serverlessConfiguration: AWS = {
         Type: "AWS::Lambda::Permission",
         Properties: {
           FunctionName: {
-            "Fn::GetAtt": [ 'AuthorizerLambdaFunction', 'Arn']
+            "Fn::GetAtt": [ 'authorizer', 'Arn']
           },
           Action: 'lambda:InvokeFunction',
           Principal: {
