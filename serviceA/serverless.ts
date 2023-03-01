@@ -30,6 +30,7 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
+    region: 'ap-south-1',
     stage: 'uat',
     apiGateway: {
       minimumCompressionSize: 1024,
@@ -51,9 +52,74 @@ const serverlessConfiguration: AWS = {
   },
   functions: { helloA: hello },
   resources: {
+    Resources: {
+      configurationsTable: {
+        Type: 'AWS::DynamoDB::Table',
+        DeletionPolicy: 'Retain',
+        Properties: {
+          TableName: '${self:custom.tables.configurationsTable}',
+          AttributeDefinitions: [
+            {
+              AttributeName: 'id',
+              AttributeType: 'S',
+            },
+            {
+              AttributeName: 'pk',
+              AttributeType: 'S',
+            },
+            {
+              AttributeName: 'sk',
+              AttributeType: 'S',
+            },
+          ],
+
+          KeySchema: [
+            {
+              AttributeName: 'id',
+              KeyType: 'HASH',
+            },
+          ],
+          BillingMode: 'PAY_PER_REQUEST',
+          GlobalSecondaryIndexes: [
+            {
+              IndexName: 'index1',
+              KeySchema: [
+                {
+                  AttributeName: 'pk',
+                  KeyType: 'HASH',
+                },
+                {
+                  AttributeName: 'sk',
+                  KeyType: 'RANGE',
+                },
+              ],
+              Projection: {
+                ProjectionType: 'ALL',
+              },
+            },
+          ],
+        },
+      },
+      TestAuthorizer: {
+        Type: 'AWS::ApiGateway::Authorizer',
+        Properties: {
+          AuthorizerResultTtlInSeconds: 300,
+          AuthorizerUri: {
+            "Fn::Join" : ["", ["arn:aws:apigateway:", "${self:provider.region}", ":lambda:path/2015-03-31/functions/", { 'Fn::GetAtt': ['AuthorizerLambdaFunction', 'Arn'] }, "/invocations"]]
+          },
+          IdentitySource: 'method.request.header.Authorization',
+          Name: 'Test-LambdaAuthorizer-${env:STAGE}',
+          RestApiId: '1b99vh58ma',
+          Type: 'REQUEST',
+        },
+      },
+    },
     Outputs: {
       stageName: {
         Value: '${self:provider.stage}',
+      },
+      authorizer: {
+        Value: ''
       },
     },
   },
