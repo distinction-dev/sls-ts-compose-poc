@@ -9,7 +9,7 @@ const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
 ) => {
   console.log('outputed var: ', process.env.CURRENT_STAGE);
   return formatJSONResponse({
-    message: `Hello ${event.body.name}, welcome to the exciting Serverless world!`,
+    message: `Hello serviceB, welcome to the exciting Serverless world!`,
     event,
   });
 };

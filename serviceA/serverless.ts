@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import type { AWS } from '@serverless/typescript';
 
-import { hello } from './src/functions';
+import { authorizer, hello } from './src/functions';
 
 const serverlessConfiguration: AWS = {
   service: 'sls-ts-compose-poc-serviceA',
@@ -24,8 +24,6 @@ const serverlessConfiguration: AWS = {
     'serverless-offline',
     'serverless-stage-manager',
     'serverless-prune-plugin',
-    'serverless-plugin-aws-alerts',
-    'serverless-plugin-canary-deployments', // Remove this if you want to disable Canary Deployments
   ],
   provider: {
     name: 'aws',
@@ -50,7 +48,7 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
     },
   },
-  functions: { helloA: hello, authorizer: hello },
+  functions: { helloA: hello, authorizer },
   package: {
     individually: true,
   },
@@ -133,7 +131,7 @@ const serverlessConfiguration: AWS = {
       stageName: {
         Value: '${self:provider.stage}',
       },
-      authorizer: {
+      authorizerId: {
         Value: {
           Ref: 'TestAuthorizer',
         },

@@ -48,6 +48,7 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       CURRENT_STAGE: '${param:stageName}',
+      AUTHORIZER_ID: '${param:authorizerId}',
     },
   },
   functions: { helloB: hello },

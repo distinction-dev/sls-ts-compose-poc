@@ -5,14 +5,12 @@ export default {
   events: [
     {
       http: {
-        method: 'get',
+        method: 'post',
         path: 'hello',
-        cors: {
-          maxAge: 3600,
-        },
-        authorizer: {
-          type: 'CUSTOM',
-          authorizerId: process.env.AUTHORIZER_ID,
+        request: {
+          schemas: {
+            'application/json': schema,
+          },
         },
       },
     },
