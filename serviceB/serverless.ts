@@ -18,10 +18,6 @@ const serverlessConfiguration: AWS = {
       automatic: true,
       number: 3,
     },
-    apiGateway: {
-      restApiId: 'gqli8o3eda',
-      restApiRootResourceId: '34r1x2c4g8'
-    },
   },
   plugins: [
     'serverless-webpack',
@@ -36,18 +32,11 @@ const serverlessConfiguration: AWS = {
     runtime: 'nodejs16.x',
     stage: 'uat',
     apiGateway: {
+      restApiId: 'gqli8o3eda',
+      restApiRootResourceId: '34r1x2c4g8',
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
       metrics: false, // activate to see CacheHits and Misses
-    },
-    logs: {
-      // activate to see API Gateway logs
-      restApi: {
-        accessLogging: false,
-        executionLogging: false,
-        level: 'INFO',
-        fullExecutionData: false,
-      },
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
