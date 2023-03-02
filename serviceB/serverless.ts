@@ -51,6 +51,9 @@ const serverlessConfiguration: AWS = {
       AUTHORIZER_ID: '${param:authorizerId}',
     },
   },
+  package: {
+    individually: true,
+  },
   functions: { helloB: hello },
 };
 
