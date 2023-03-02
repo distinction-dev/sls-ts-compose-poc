@@ -6,8 +6,8 @@ const serverlessComposeConfiguration = {
     serviceB: {
       path: './serviceB',
       params: {
-        stageName: '${serviceA.stageName}',
-        authorizerId: '${serviceA.authorizerId}'
+        stageName: 'uat',
+        authorizerId: 'hfj7s2',
       },
       dependsOn: ['serviceA'],
     },

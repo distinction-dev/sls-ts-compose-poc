@@ -18,6 +18,10 @@ const serverlessConfiguration: AWS = {
       automatic: true,
       number: 3,
     },
+    apiGateway: {
+      restApiId: 'gqli8o3eda',
+      restApiRootResourceId: '34r1x2c4g8'
+    },
   },
   plugins: [
     'serverless-webpack',
