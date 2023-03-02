@@ -124,7 +124,7 @@ const serverlessConfiguration: AWS = {
           },
           Action: 'lambda:InvokeFunction',
           Principal: {
-            "Fn::GetAtt": ["", [ "apigateway.", { Ref: "AWS::URLSuffix" } ]]
+            "Fn::Join": ["", [ "apigateway.", { Ref: "AWS::URLSuffix" } ]]
           },
         },
       },
