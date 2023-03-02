@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import type { AWS } from '@serverless/typescript';
 
-import { hello } from './src/functions';
+import { functions } from './src/functions';
 
 const serverlessConfiguration: AWS = {
   service: 'sls-ts-compose-poc-serviceB',
@@ -54,7 +54,7 @@ const serverlessConfiguration: AWS = {
   package: {
     individually: true,
   },
-  functions: { helloB: hello },
+  functions,
 };
 
 module.exports = serverlessConfiguration;
